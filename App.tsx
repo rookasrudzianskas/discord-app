@@ -30,6 +30,10 @@ const App = () => {
             // just for the Dev side
             client.devToken('rokas'),
         );
+
+        // create the channel
+        const channel = client.channel("team", "general", { name: "General" });
+        await channel.create();
     };
 
     useEffect(() => {
