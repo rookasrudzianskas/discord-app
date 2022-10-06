@@ -38,6 +38,7 @@ const App = () => {
 
     useEffect(() => {
        connectUser();
+
     }, []);
 
     if (!isLoadingComplete) {
