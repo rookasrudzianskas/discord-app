@@ -46,6 +46,11 @@ const App = () => {
 
     }, []);
 
+    const onChannelSelect = (channel) => {
+        log.info("Channel Selected");
+        log.info(channel);
+    }
+
     if (!isLoadingComplete || !isReady) {
         return null;
     } else {
@@ -53,7 +58,7 @@ const App = () => {
             <SafeAreaProvider>
                 <OverlayProvider>
                     <Chat client={client} >
-                        <ChannelList />
+                        <ChannelList onSelect={onChannelSelect} />
                         {/*<Navigation colorScheme={colorScheme} />*/}
                         <StatusBar />
                     </Chat>
