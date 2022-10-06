@@ -7,6 +7,10 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
+import {StreamChat} from 'stream-chat';
+
+const API_KEY = '5paxy3knjczj';
+const client = StreamChat.getInstance(API_KEY);
 
 export default function App() {
   const isLoadingComplete = useCachedResources();
