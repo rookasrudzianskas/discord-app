@@ -10,6 +10,7 @@ import Navigation from './src/navigation';
 import {StreamChat} from 'stream-chat';
 import {useEffect} from "react";
 import { logger } from "react-native-logs";
+import {OverlayProvider} from 'stream-chat-expo';
 
 const API_KEY = '5paxy3knjczj';
 const client = StreamChat.getInstance(API_KEY);
