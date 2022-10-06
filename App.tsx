@@ -8,22 +8,40 @@ import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
 import {StreamChat} from 'stream-chat';
+import {useEffect} from "react";
 
 const API_KEY = '5paxy3knjczj';
 const client = StreamChat.getInstance(API_KEY);
 
-export default function App() {
-  const isLoadingComplete = useCachedResources();
-  const colorScheme = useColorScheme();
+const App = () => {
+    const isLoadingComplete = useCachedResources();
+    const colorScheme = useColorScheme();
 
-  if (!isLoadingComplete) {
-    return null;
-  } else {
-    return (
-      <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
-      </SafeAreaProvider>
-    );
-  }
+    const connectUserData = async () => {
+        await client.connectUser(
+            {
+                id: 'rokas',
+                name: 'Rplas Rudzianskas',
+                image: 'https://yt3.ggpht.com/-CDERLAq3BNY7murpWzg3z9Qde3c9ZrRx59LlLEb1UzKDKZ_ckpTAOlYVQ5TJo9XTgJl2kh9bw=s900-c-k-c0x00ffffff-no-rj',
+            },
+        ),
+            client.devToken('rokas'),
+    };
+
+    useEffect(() => {
+       connectUser();
+    }, []);
+
+    if (!isLoadingComplete) {
+        return null;
+    } else {
+        return (
+            <SafeAreaProvider>
+                <Navigation colorScheme={colorScheme} />
+                <StatusBar />
+            </SafeAreaProvider>
+        );
+    }
 }
+
+export default App;
