@@ -9,9 +9,12 @@ import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
 import {StreamChat} from 'stream-chat';
 import {useEffect} from "react";
+import { logger } from "react-native-logs";
 
 const API_KEY = '5paxy3knjczj';
 const client = StreamChat.getInstance(API_KEY);
+const log = logger.createLogger();
+
 
 const App = () => {
     const isLoadingComplete = useCachedResources();
