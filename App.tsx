@@ -3,14 +3,15 @@ import "react-native-gesture-handler";
 
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
-
+import { Platform } from 'react-native'
+import {ViewPropTypes} from 'deprecated-react-native-prop-types';
 import useCachedResources from './src/hooks/useCachedResources';
 import useColorScheme from './src/hooks/useColorScheme';
 import Navigation from './src/navigation';
 import {StreamChat} from 'stream-chat';
-import {useEffect} from "react";
+import {useEffect, useState} from "react";
 import { logger } from "react-native-logs";
-import {OverlayProvider, Chat} from 'stream-chat-expo';
+import {OverlayProvider, Chat, ChannelList} from 'stream-chat-expo';
 
 const API_KEY = '5paxy3knjczj';
 const client = StreamChat.getInstance(API_KEY);
@@ -18,6 +19,7 @@ const log = logger.createLogger();
 
 
 const App = () => {
+    const [isReady, setIsReady] = useState(false);
     const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
 
@@ -32,9 +34,11 @@ const App = () => {
             client.devToken('rokas'),
         );
 
+        setIsReady(true);
+
         // create the channel
-        const channel = client.channel("team", "general", { name: "General" });
-        await channel.create();
+        // const channel = client.channel("team", "general", { name: "General" });
+        // await channel.create();
     };
 
     useEffect(() => {
@@ -42,14 +46,15 @@ const App = () => {
 
     }, []);
 
-    if (!isLoadingComplete) {
+    if (!isLoadingComplete || !isReady) {
         return null;
     } else {
         return (
             <SafeAreaProvider>
                 <OverlayProvider>
                     <Chat client={client} >
-                        <Navigation colorScheme={colorScheme} />
+                        <ChannelList />
+                        {/*<Navigation colorScheme={colorScheme} />*/}
                         <StatusBar />
                     </Chat>
                 </OverlayProvider>
