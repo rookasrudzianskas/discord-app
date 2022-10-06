@@ -17,15 +17,15 @@ const App = () => {
     const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
 
-    const connectUserData = async () => {
+    const connectUser = async () => {
         await client.connectUser(
             {
-                id: 'rokas',
-                name: 'Rplas Rudzianskas',
-                image: 'https://yt3.ggpht.com/-CDERLAq3BNY7murpWzg3z9Qde3c9ZrRx59LlLEb1UzKDKZ_ckpTAOlYVQ5TJo9XTgJl2kh9bw=s900-c-k-c0x00ffffff-no-rj',
-            },
-        ),
+                    id: 'rokas',
+                    name: 'Rokas Rudzianskas',
+                    image: 'https://yt3.ggpht.com/-CDERLAq3BNY7murpWzg3z9Qde3c9ZrRx59LlLEb1UzKDKZ_ckpTAOlYVQ5TJo9XTgJl2kh9bw=s900-c-k-c0x00ffffff-no-rj',
+                },
             client.devToken('rokas'),
+        );
     };
 
     useEffect(() => {
