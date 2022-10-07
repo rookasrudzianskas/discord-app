@@ -11,7 +11,8 @@ import Navigation from './src/navigation';
 import {StreamChat} from 'stream-chat';
 import {useEffect, useState} from "react";
 import { logger } from "react-native-logs";
-import {OverlayProvider, Chat, ChannelList} from 'stream-chat-expo';
+import {OverlayProvider, Chat, ChannelList, Channel} from 'stream-chat-expo';
+import {Text} from "react-native";
 
 const API_KEY = '5paxy3knjczj';
 const client = StreamChat.getInstance(API_KEY);
@@ -20,6 +21,7 @@ const log = logger.createLogger();
 
 const App = () => {
     const [isReady, setIsReady] = useState(false);
+    const [selectedChannel, setSelectedChannel] = useState(null);
     const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
 
@@ -47,9 +49,9 @@ const App = () => {
     }, []);
 
     const onChannelSelect = (channel) => {
+        setSelectedChannel(channel);
         // log.info("Channel Selected");
         // console.log(channel);
-        
     }
 
     if (!isLoadingComplete || !isReady) {
@@ -59,7 +61,13 @@ const App = () => {
             <SafeAreaProvider>
                 <OverlayProvider>
                     <Chat client={client} >
-                        <ChannelList onSelect={onChannelSelect} />
+                        {!selectedChannel ? (<ChannelList onSelect={onChannelSelect} />) : (
+                            <>
+                                <Channel channel={selectedChannel}>
+                                    <Text className="text-lg font-bold mt-16 ml-10" onPress={() => setSelectedChannel(null)}>Back</Text>
+                                </Channel>
+                            </>
+                        )}
                         {/*<Navigation colorScheme={colorScheme} />*/}
                         <StatusBar />
                     </Chat>
