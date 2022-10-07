@@ -5,13 +5,14 @@ import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} 
 import {useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useAuthContext} from "../contexts/authContext";
+import ChannelScreen from "../screens/ChannelScreen";
 
 const Drawer = createDrawerNavigator();
 
 const DrawerNavigator = () => {
     return (
         <Drawer.Navigator drawerContent={CustomDrawerContent}>
-            <Drawer.Screen name="Test" component={TabOneScreen} />
+            <Drawer.Screen name="ChannelScreen" component={ChannelScreen} />
         </Drawer.Navigator>
     );
 }
