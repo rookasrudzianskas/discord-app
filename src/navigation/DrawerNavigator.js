@@ -26,7 +26,6 @@ const CustomDrawerContent = (props) => {
         // navigate to a screen for this channel
         props.navigation.navigate("ChannelScreen", { channel });
     };
-
     const { userId } = useAuthContext();
 
     const filters = { members: { $in: [userId] } };
@@ -39,6 +38,9 @@ const CustomDrawerContent = (props) => {
 
             <Text style={styles.groupTitle}>Public channels</Text>
             <ChannelList onSelect={onChannelSelect} filters={publicFilters} />
+
+            <Text style={styles.groupTitle}>Your channels</Text>
+            <ChannelList onSelect={onChannelSelect} filters={filters} />
         </SafeAreaView>
     );
 

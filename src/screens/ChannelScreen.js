@@ -1,6 +1,7 @@
 import React from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import {useRoute} from "@react-navigation/native";
+import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
 
 const ChannelScreen = () => {
     const route = useRoute();
@@ -15,11 +16,10 @@ const ChannelScreen = () => {
     }
 
     return (
-        <View>
-            <Text>
-                byrookas 🚀
-            </Text>
-        </View>
+        <Channel channel={channel}>
+            <MessageList />
+            <MessageInput />
+        </Channel>
     );
 };
 
