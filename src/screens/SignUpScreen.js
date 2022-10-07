@@ -39,6 +39,7 @@ const SignUpScreen = () => {
     connectUser();
 
     // navigate to the homepage
+
   };
 
   return (

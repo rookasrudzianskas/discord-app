@@ -27,12 +27,21 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
+    const userId = null;
+
+
   return (
     <Stack.Navigator initialRouteName={"SignUpScreen"}>
-      <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
-      {/*   @ts-ignore */}
-      <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }} />
-      <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+        {!userId ? (
+            <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }} />
+        ) : (
+            <>
+                <Stack.Screen name="Root" component={BottomTabNavigator} options={{ headerShown: false }} />
+                {/*   @ts-ignore */}
+                <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
+            </>
+        )}
+
     </Stack.Navigator>
   );
 }
