@@ -13,6 +13,7 @@ import TabTwoScreen from '../screens/TabTwoScreen';
 import { RootStackParamList, RootTabParamList, RootTabScreenProps } from '../../types';
 import LinkingConfiguration from './LinkingConfiguration';
 import SignUpScreen from "../screens/SignUpScreen";
+import {useAuthContext} from "../contexts/authContext";
 
 export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeName }) {
   return (
@@ -27,8 +28,7 @@ export default function Navigation({ colorScheme }: { colorScheme: ColorSchemeNa
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
-    const userId = null;
-
+    const {userId} = useAuthContext();
 
   return (
     <Stack.Navigator initialRouteName={"SignUpScreen"}>

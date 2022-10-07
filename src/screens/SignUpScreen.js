@@ -1,3 +1,4 @@
+import { Auth } from "aws-amplify";
 import { useState } from "react";
 import {
   Text,
@@ -7,84 +8,81 @@ import {
   ScrollView,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import useCachedResources from "../hooks/useCachedResources";
-import {useChatContext} from 'stream-chat-expo';
-import {useNavigation} from "@react-navigation/native";
-import {useAuthContext} from "../contexts/authContext";
+import { useChatContext } from "stream-chat-expo";
+import { useAuthContext } from "../contexts/AuthContext";
+import Navigation from "../navigation";
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
-  const [isReady, setIsReady] = useState(false);
-  const [selectedChannel, setSelectedChannel] = useState(null);
-  const isLoadingComplete = useCachedResources();
-  const {setUserId} = useAuthContext();
-  const client = useChatContext();
-  const navigation = useNavigation();
+  const { setUserId } = useAuthContext();
+
+  const { client } = useChatContext();
 
   const connectUser = async () => {
+    // sign in with your backend and get the user token
+
+
     await client.connectUser(
         {
           id: username,
           name: name,
-          image: 'https://yt3.ggpht.com/-CDERLAq3BNY7murpWzg3z9Qde3c9ZrRx59LlLEb1UzKDKZ_ckpTAOlYVQ5TJo9XTgJl2kh9bw=s900-c-k-c0x00ffffff-no-rj',
+          image:
+              "https://yt3.ggpht.com/-CDERLAq3BNY7murpWzg3z9Qde3c9ZrRx59LlLEb1UzKDKZ_ckpTAOlYVQ5TJo9XTgJl2kh9bw=s900-c-k-c0x00ffffff-no-rj",
         },
-        // just for the Dev side
-        client.devToken('rokas'),
+        client.devToken(username)
     );
 
-  };
+    // const channel = client.channel("livestream", "public", { name: "Public" });
+    // await channel.watch();
 
+    setUserId(username);
+  };
 
   const signUp = () => {
     connectUser();
 
-    // navigate to the homepage
-
+    // navigate to the home page
   };
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ScrollView>
-        <Text style={styles.title}>Welcome back</Text>
-        <Text style={styles.subtitle}>We are so excited to see you again</Text>
+      <SafeAreaView style={styles.container}>
+        <ScrollView>
+          <Text style={styles.title}>Welcome back</Text>
+          <Text style={styles.subtitle}>We are so excited to see you again</Text>
 
-        <Text style={styles.text}>ACCOUNT INFORMATION</Text>
+          <Text style={styles.text}>ACCOUNT INFORMATION</Text>
 
-        <TextInput
-            autoCapitalize={'none'}
-          value={username}
-          onChangeText={setUsername}
-          style={styles.input}
-          placeholderTextColor="grey"
-          placeholder="Username"
-        />
-        <TextInput
-          value={name}
-            autoCapitalize={'none'}
-          onChangeText={setName}
-          style={styles.input}
-          placeholderTextColor="grey"
-          placeholder="Full name"
-        />
-        <TextInput
-          value={password}
-            autoCapitalize={'none'}
-          secureTextEntry={true}
-          onChangeText={setPassword}
-          style={styles.input}
-          placeholderTextColor="grey"
-          placeholder="Password"
-        />
+          <TextInput
+              value={username}
+              onChangeText={setUsername}
+              style={styles.input}
+              placeholderTextColor="grey"
+              placeholder="Username"
+          />
+          <TextInput
+              value={name}
+              onChangeText={setName}
+              style={styles.input}
+              placeholderTextColor="grey"
+              placeholder="Full name"
+          />
+          <TextInput
+              value={password}
+              onChangeText={setPassword}
+              style={styles.input}
+              placeholderTextColor="grey"
+              placeholder="Password"
+          />
 
-        <Text style={styles.forgotPasswordText}>Forgot password?</Text>
+          <Text style={styles.forgotPasswordText}>Forgot password?</Text>
 
-        <Pressable style={styles.button} onPress={signUp}>
-          <Text style={styles.buttonText}>Login</Text>
-        </Pressable>
-      </ScrollView>
-    </SafeAreaView>
+          <Pressable style={styles.button} onPress={signUp}>
+            <Text style={styles.buttonText}>Login</Text>
+          </Pressable>
+        </ScrollView>
+      </SafeAreaView>
   );
 };
 
