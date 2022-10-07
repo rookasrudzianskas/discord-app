@@ -31,7 +31,7 @@ const SignUpScreen = () => {
         client.devToken(username)
     );
 
-    // Creates the public channel
+    // Creates the public channel, which anyone can join!
     const channel = client.channel("livestream", "public", { name: "Public" });
     await channel.watch();
 
