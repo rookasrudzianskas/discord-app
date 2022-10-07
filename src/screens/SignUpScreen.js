@@ -40,8 +40,6 @@ const SignUpScreen = () => {
 
   const signUp = () => {
     connectUser();
-
-    // navigate to the home page
   };
 
   return (
