@@ -40,7 +40,7 @@ const CustomDrawerContent = (props) => {
             <ChannelList onSelect={onChannelSelect} filters={publicFilters} />
 
             <Text style={styles.groupTitle}>Your channels</Text>
-            <ChannelList onSelect={onChannelSelect} filters={filters} />
+            {/*<ChannelList onSelect={onChannelSelect} filters={filters} />*/}
         </SafeAreaView>
     );
 
