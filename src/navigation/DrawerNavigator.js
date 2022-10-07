@@ -6,7 +6,7 @@ import {useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useAuthContext} from "../contexts/authContext";
 import ChannelScreen from "../screens/ChannelScreen";
-import {FontAwesome5, Ionicons} from "@expo/vector-icons";
+import {AntDesign, FontAwesome5, Ionicons} from "@expo/vector-icons";
 // import { LogBox. } from 'react-native';
 
 LogBox.ignoreLogs([
@@ -42,6 +42,11 @@ const CustomDrawerContent = (props) => {
                 <Ionicons name="person-add" size={15} color="white" />
                 <Text className="text-white font-semibold">INVITE</Text>
             </TouchableOpacity>
+
+            <View className="flex-row items-center justify-start space-x-2 mt-5 py-2 mx-3">
+                <AntDesign name="calendar" size={20} color="gray" />
+                <Text className="text-white text-[18px] font-bold">Events</Text>
+            </View>
 
             <Text style={styles.groupTitle}>Public channels</Text>
             <ChannelList onSelect={onChannelSelect} filters={publicFilters} />
