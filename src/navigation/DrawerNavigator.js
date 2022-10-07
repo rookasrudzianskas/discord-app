@@ -1,8 +1,10 @@
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList} from "@react-navigation/drawer";
 import TabOneScreen from "../screens/TabOneScreen";
-import {Linking, Text, View} from "react-native";
+import {Linking, Text, View, StyleSheet} from "react-native";
 import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
 import {useState} from "react";
+import {SafeAreaView} from "react-native-safe-area-context";
+import {useAuthContext} from "../contexts/authContext";
 
 const Drawer = createDrawerNavigator();
 
@@ -16,17 +18,48 @@ const DrawerNavigator = () => {
 
 const CustomDrawerContent = (props) => {
     const onChannelSelect = (channel) => {
-        // setSelectedChannel(channel);
-    }
+        // navigate to a screen for this channel
+        props.navigation.navigate("ChannelScreen", { channel });
+    };
+
+    const { userId } = useAuthContext();
+
+    const filters = { members: { $in: [userId] } };
+    const publicFilters = { type: "livestream" };
+
 
     return (
-        <DrawerContentScrollView {...props}>
-            <View className="flex items-center">
+        <SafeAreaView {...props}  style={{ flex: 1 }} className="bg-black">
+            <View className="items-center">
                 <Text className="text-lg font-bold text-white lowercase">Rokas Development</Text>
             </View>
-                <ChannelList onSelect={onChannelSelect} />
-        </DrawerContentScrollView>
+
+            <Text style={styles.groupTitle}>Public channels</Text>
+            <ChannelList onSelect={onChannelSelect} filters={publicFilters} />
+        </SafeAreaView>
     );
+
+
 }
 
+const styles = StyleSheet.create({
+    title: {
+        color: "white",
+        fontWeight: "bold",
+        alignSelf: "center",
+        fontSize: 16,
+        margin: 10,
+    },
+    groupTitle: {
+        color: "white",
+        margin: 10,
+
+    },
+});
+
+
+
 export default DrawerNavigator;
+
+
+
