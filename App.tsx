@@ -47,8 +47,9 @@ const App = () => {
     }, []);
 
     const onChannelSelect = (channel) => {
-        log.info("Channel Selected");
-        log.info(channel);
+        // log.info("Channel Selected");
+        // console.log(channel);
+        
     }
 
     if (!isLoadingComplete || !isReady) {
