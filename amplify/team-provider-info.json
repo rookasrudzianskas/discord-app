@@ -1,0 +1,20 @@
+{
+  "staging": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-discord-staging-170414-authRole",
+      "UnauthRoleArn": "arn:aws:iam::605111547475:role/amplify-discord-staging-170414-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::605111547475:role/amplify-discord-staging-170414-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-discord-staging-170414-deployment",
+      "UnauthRoleName": "amplify-discord-staging-170414-unauthRole",
+      "StackName": "amplify-discord-staging-170414",
+      "StackId": "arn:aws:cloudformation:us-east-1:605111547475:stack/amplify-discord-staging-170414/12576490-4662-11ed-bfdb-0e9863ae468d",
+      "AmplifyAppId": "d7tdnbov3g1ag"
+    },
+    "categories": {
+      "auth": {
+        "Discord": {}
+      }
+    }
+  }
+}
