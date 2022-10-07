@@ -15,7 +15,6 @@ const DrawerNavigator = () => {
 }
 
 const CustomDrawerContent = (props) => {
-    const [selectedChannel, setSelectedChannel] = useState(null);
     const onChannelSelect = (channel) => {
         // setSelectedChannel(channel);
     }
@@ -24,8 +23,8 @@ const CustomDrawerContent = (props) => {
         <DrawerContentScrollView {...props}>
             <View className="flex items-center">
                 <Text className="text-lg font-bold text-white lowercase">Rokas Development</Text>
-                <ChannelList onSelect={onChannelSelect} />
             </View>
+                <ChannelList onSelect={onChannelSelect} />
         </DrawerContentScrollView>
     );
 }
