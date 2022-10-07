@@ -21,8 +21,6 @@ const SignUpScreen = () => {
 
   const connectUser = async () => {
     // sign in with your backend and get the user token
-
-
     await client.connectUser(
         {
           id: username,
@@ -33,7 +31,7 @@ const SignUpScreen = () => {
         client.devToken(username)
     );
 
-    // const channel = client.channel("livestream", "public", { name: "Public" });
+    const channel = client.channel("livestream", "public", { name: "Public" });
     // await channel.watch();
 
     setUserId(username);
