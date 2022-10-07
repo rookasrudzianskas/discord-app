@@ -11,7 +11,7 @@ import Navigation from './src/navigation';
 import {StreamChat} from 'stream-chat';
 import {useEffect, useState} from "react";
 import { logger } from "react-native-logs";
-import {OverlayProvider, Chat, ChannelList, Channel} from 'stream-chat-expo';
+import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
 import {Text} from "react-native";
 
 const API_KEY = '5paxy3knjczj';
@@ -65,6 +65,8 @@ const App = () => {
                             <>
                                 <Channel channel={selectedChannel}>
                                     <Text className="text-lg font-bold mt-16 ml-10" onPress={() => setSelectedChannel(null)}>Back</Text>
+                                    <MessageList />
+                                    <MessageInput />
                                 </Channel>
                             </>
                         )}
