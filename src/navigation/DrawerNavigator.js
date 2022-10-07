@@ -1,12 +1,12 @@
 import {createDrawerNavigator, DrawerContentScrollView, DrawerItem, DrawerItemList} from "@react-navigation/drawer";
 import TabOneScreen from "../screens/TabOneScreen";
-import {Linking, Text, View, StyleSheet, LogBox} from "react-native";
+import {Linking, Text, View, StyleSheet, LogBox, TouchableOpacity} from "react-native";
 import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
 import {useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useAuthContext} from "../contexts/authContext";
 import ChannelScreen from "../screens/ChannelScreen";
-import {FontAwesome5} from "@expo/vector-icons";
+import {FontAwesome5, Ionicons} from "@expo/vector-icons";
 // import { LogBox. } from 'react-native';
 
 LogBox.ignoreLogs([
@@ -37,6 +37,11 @@ const CustomDrawerContent = (props) => {
                 <FontAwesome5 name="discord" size={14} color="gray" />
                 <Text className="text-lg font-bold text-white lowercase">Rokas Development</Text>
             </View>
+
+            <TouchableOpacity activeOpacity={0.7} className="mt-5 bg-gray-700 mx-3 flex-row space-x-2 rounded-sm items-center justify-center py-2">
+                <Ionicons name="person-add" size={15} color="white" />
+                <Text className="text-white font-semibold">INVITE</Text>
+            </TouchableOpacity>
 
             <Text style={styles.groupTitle}>Public channels</Text>
             <ChannelList onSelect={onChannelSelect} filters={publicFilters} />
