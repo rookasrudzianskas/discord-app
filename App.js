@@ -13,6 +13,7 @@ import {useEffect, useState} from "react";
 import { logger } from "react-native-logs";
 import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
 import {Text} from "react-native";
+import AuthContext from "./src/contexts/authContext";
 
 const API_KEY = '5paxy3knjczj';
 const client = StreamChat.getInstance(API_KEY);
@@ -44,21 +45,23 @@ const App = () => {
     } else {
         return (
             <SafeAreaProvider>
-                <OverlayProvider>
-                    <Chat client={client} >
-                        {/*{!selectedChannel ? (<ChannelList onSelect={onChannelSelect} />) : (*/}
-                        {/*    <>*/}
-                        {/*        <Channel channel={selectedChannel}>*/}
-                        {/*            <Text className="text-lg font-bold mt-16 ml-10" onPress={() => setSelectedChannel(null)}>Back</Text>*/}
-                        {/*            <MessageList />*/}
-                        {/*            <MessageInput />*/}
-                        {/*        </Channel>*/}
-                        {/*    </>*/}
-                        {/*)}*/}
-                        <Navigation colorScheme={colorScheme} />
-                        <StatusBar style="light" />
-                    </Chat>
-                </OverlayProvider>
+                <AuthContext>
+                    <OverlayProvider>
+                        <Chat client={client} >
+                            {/*{!selectedChannel ? (<ChannelList onSelect={onChannelSelect} />) : (*/}
+                            {/*    <>*/}
+                            {/*        <Channel channel={selectedChannel}>*/}
+                            {/*            <Text className="text-lg font-bold mt-16 ml-10" onPress={() => setSelectedChannel(null)}>Back</Text>*/}
+                            {/*            <MessageList />*/}
+                            {/*            <MessageInput />*/}
+                            {/*        </Channel>*/}
+                            {/*    </>*/}
+                            {/*)}*/}
+                            <Navigation colorScheme={colorScheme} />
+                            <StatusBar style="light" />
+                        </Chat>
+                    </OverlayProvider>
+                </AuthContext>
             </SafeAreaProvider>
         );
     }
