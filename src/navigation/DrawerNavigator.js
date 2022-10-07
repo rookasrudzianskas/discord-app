@@ -6,6 +6,7 @@ import {useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useAuthContext} from "../contexts/authContext";
 import ChannelScreen from "../screens/ChannelScreen";
+import {FontAwesome5} from "@expo/vector-icons";
 // import { LogBox. } from 'react-native';
 
 LogBox.ignoreLogs([
@@ -32,7 +33,8 @@ const CustomDrawerContent = (props) => {
     const publicFilters = { type: "livestream" };
     return (
         <SafeAreaView {...props}  style={{ flex: 1 }} className="bg-black">
-            <View className="items-center">
+            <View className="flex-row items-center space-x-2 ml-8">
+                <FontAwesome5 name="discord" size={14} color="gray" />
                 <Text className="text-lg font-bold text-white lowercase">Rokas Development</Text>
             </View>
 
