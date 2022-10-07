@@ -32,7 +32,7 @@ const CustomDrawerContent = (props) => {
     const filters = { members: { $in: [userId] } };
     const publicFilters = { type: "livestream" };
     return (
-        <SafeAreaView {...props}  style={{ flex: 1 }} className="">
+        <SafeAreaView {...props}  style={{ flex: 1 }} className="px-3">
             <View className="flex-row items-center space-x-2 ml-8">
                 <FontAwesome5 name="discord" size={14} color="gray" />
                 <Text className="text-lg font-bold text-white lowercase">Rokas Development</Text>
