@@ -1,6 +1,5 @@
 import "react-native-gesture-handler";
 // import "react-native-get-random-values";
-
 import { StatusBar } from 'expo-status-bar';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Platform } from 'react-native'
@@ -14,6 +13,9 @@ import { logger } from "react-native-logs";
 import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
 import AuthContext from "./src/contexts/authContext";
 import {StreamColors} from "./src/constants/Colors";
+import { Amplify } from 'aws-amplify'
+import awsconfig from './src/aws-exports'
+Amplify.configure(awsconfig);
 
 const API_KEY = '5paxy3knjczj';
 const client = StreamChat.getInstance(API_KEY);
@@ -57,4 +59,4 @@ const App = () => {
     }
 }
 
-export default App;
+export default withAuthenticator(App);
