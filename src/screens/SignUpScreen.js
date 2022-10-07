@@ -10,6 +10,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import useCachedResources from "../hooks/useCachedResources";
 import {useChatContext} from 'stream-chat-expo';
 import {useNavigation} from "@react-navigation/native";
+import {useAuthContext} from "../contexts/authContext";
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState("");
@@ -18,14 +19,15 @@ const SignUpScreen = () => {
   const [isReady, setIsReady] = useState(false);
   const [selectedChannel, setSelectedChannel] = useState(null);
   const isLoadingComplete = useCachedResources();
+  const {setUserId} = useAuthContext();
   const client = useChatContext();
   const navigation = useNavigation();
 
   const connectUser = async () => {
     await client.connectUser(
         {
-          id: 'rokas',
-          name: 'Rokas Rudzianskas',
+          id: username,
+          name: name,
           image: 'https://yt3.ggpht.com/-CDERLAq3BNY7murpWzg3z9Qde3c9ZrRx59LlLEb1UzKDKZ_ckpTAOlYVQ5TJo9XTgJl2kh9bw=s900-c-k-c0x00ffffff-no-rj',
         },
         // just for the Dev side
