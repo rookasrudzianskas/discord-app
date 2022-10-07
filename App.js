@@ -21,7 +21,6 @@ const log = logger.createLogger();
 
 
 const App = () => {
-    const [selectedChannel, setSelectedChannel] = useState(null);
     const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
 
@@ -34,11 +33,6 @@ const App = () => {
             client.disconnectUser();
         }
     }, []);
-
-
-    const onChannelSelect = (channel) => {
-        setSelectedChannel(channel);
-    }
 
     if (!isLoadingComplete) {
         return null;
@@ -57,7 +51,7 @@ const App = () => {
                             {/*        </Channel>*/}
                             {/*    </>*/}
                             {/*)}*/}
-                            <Navigation colorScheme={colorScheme} />
+                            <Navigation colorScheme={"dark"} />
                             <StatusBar style="light" />
                         </Chat>
                     </OverlayProvider>
