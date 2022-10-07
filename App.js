@@ -20,22 +20,26 @@ const log = logger.createLogger();
 
 
 const App = () => {
-
+    const [selectedChannel, setSelectedChannel] = useState(null);
+    const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
 
-
     useEffect(() => {
-       connectUser();
+        // this is done then component mounts, but we need to do it when the user signs up
 
+
+        return () => {
+            // this is done when the component unmounts
+            client.disconnectUser();
+        }
     }, []);
+
 
     const onChannelSelect = (channel) => {
         setSelectedChannel(channel);
-        // log.info("Channel Selected");
-        // console.log(channel);
     }
 
-    if (!isLoadingComplete || !isReady) {
+    if (!isLoadingComplete) {
         return null;
     } else {
         return (

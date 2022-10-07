@@ -8,6 +8,8 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import useCachedResources from "../hooks/useCachedResources";
+import {useChatContext} from 'stream-chat-expo';
+import {useNavigation} from "@react-navigation/native";
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState("");
@@ -16,6 +18,8 @@ const SignUpScreen = () => {
   const [isReady, setIsReady] = useState(false);
   const [selectedChannel, setSelectedChannel] = useState(null);
   const isLoadingComplete = useCachedResources();
+  const client = useChatContext();
+  const navigation = useNavigation();
 
   const connectUser = async () => {
     await client.connectUser(
@@ -28,16 +32,13 @@ const SignUpScreen = () => {
         client.devToken('rokas'),
     );
 
-    setIsReady(true);
-
-    // create the channel
-    // const channel = client.channel("team", "general", { name: "General" });
-    // await channel.create();
   };
 
 
   const signUp = () => {
-    console.warn("Signing up: ", username);
+    connectUser();
+
+    // navigate to the homepage
   };
 
   return (
@@ -49,6 +50,7 @@ const SignUpScreen = () => {
         <Text style={styles.text}>ACCOUNT INFORMATION</Text>
 
         <TextInput
+            autoCapitalize={'none'}
           value={username}
           onChangeText={setUsername}
           style={styles.input}
@@ -57,6 +59,7 @@ const SignUpScreen = () => {
         />
         <TextInput
           value={name}
+            autoCapitalize={'none'}
           onChangeText={setName}
           style={styles.input}
           placeholderTextColor="grey"
@@ -64,6 +67,8 @@ const SignUpScreen = () => {
         />
         <TextInput
           value={password}
+            autoCapitalize={'none'}
+          secureTextEntry={true}
           onChangeText={setPassword}
           style={styles.input}
           placeholderTextColor="grey"
