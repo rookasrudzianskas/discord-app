@@ -1,4 +1,4 @@
-import { Auth } from "aws-amplify";
+// import { Auth } from "aws-amplify";
 import { useState } from "react";
 import {
   Text,
@@ -9,13 +9,12 @@ import {
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useChatContext } from "stream-chat-expo";
-import { useAuthContext } from "../contexts/AuthContext";
-import Navigation from "../navigation";
+import {useAuthContext} from "../contexts/authContext";
 
 const SignUpScreen = () => {
-  const [username, setUsername] = useState("");
-  const [name, setName] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("test");
+  const [name, setName] = useState("test");
+  const [password, setPassword] = useState("test2");
   const { setUserId } = useAuthContext();
 
   const { client } = useChatContext();
@@ -55,6 +54,7 @@ const SignUpScreen = () => {
           <Text style={styles.text}>ACCOUNT INFORMATION</Text>
 
           <TextInput
+              autoCapitalize="none"
               value={username}
               onChangeText={setUsername}
               style={styles.input}
@@ -62,6 +62,7 @@ const SignUpScreen = () => {
               placeholder="Username"
           />
           <TextInput
+              autoCapitalize="none"
               value={name}
               onChangeText={setName}
               style={styles.input}
@@ -69,6 +70,8 @@ const SignUpScreen = () => {
               placeholder="Full name"
           />
           <TextInput
+              autoCapitalize="none"
+              // secureTextEntry={true}
               value={password}
               onChangeText={setPassword}
               style={styles.input}

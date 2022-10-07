@@ -31,7 +31,7 @@ function RootNavigator() {
     const {userId} = useAuthContext();
 
   return (
-    <Stack.Navigator initialRouteName={"SignUpScreen"}>
+    <Stack.Navigator>
         {!userId ? (
             <Stack.Screen name="SignUpScreen" component={SignUpScreen} options={{ headerShown: false }} />
         ) : (
