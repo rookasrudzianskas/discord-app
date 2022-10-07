@@ -23,7 +23,7 @@ const ChannelScreen = () => {
     }
 
     return (
-        <Channel channel={channel}>
+        <Channel channel={channel} key={channel.data.name}>
             <MessageList />
             <MessageInput />
         </Channel>
