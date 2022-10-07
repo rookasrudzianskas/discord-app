@@ -14,11 +14,15 @@ import { logger } from "react-native-logs";
 import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
 import {Text} from "react-native";
 import AuthContext from "./src/contexts/authContext";
+import {StreamColors} from "./src/constants/Colors";
 
 const API_KEY = '5paxy3knjczj';
 const client = StreamChat.getInstance(API_KEY);
 const log = logger.createLogger();
 
+const theme = {
+    colors: StreamColors,
+}
 
 const App = () => {
     const isLoadingComplete = useCachedResources();
@@ -26,8 +30,6 @@ const App = () => {
 
     useEffect(() => {
         // this is done then component mounts, but we need to do it when the user signs up
-
-
         return () => {
             // this is done when the component unmounts
             client.disconnectUser();
@@ -40,17 +42,8 @@ const App = () => {
         return (
             <SafeAreaProvider>
                 <AuthContext>
-                    <OverlayProvider>
+                    <OverlayProvider value={{ style: theme }}>
                         <Chat client={client} >
-                            {/*{!selectedChannel ? (<ChannelList onSelect={onChannelSelect} />) : (*/}
-                            {/*    <>*/}
-                            {/*        <Channel channel={selectedChannel}>*/}
-                            {/*            <Text className="text-lg font-bold mt-16 ml-10" onPress={() => setSelectedChannel(null)}>Back</Text>*/}
-                            {/*            <MessageList />*/}
-                            {/*            <MessageInput />*/}
-                            {/*        </Channel>*/}
-                            {/*    </>*/}
-                            {/*)}*/}
                             <Navigation colorScheme={"dark"} />
                             <StatusBar style="light" />
                         </Chat>
