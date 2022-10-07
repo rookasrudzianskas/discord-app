@@ -27,8 +27,6 @@ const CustomDrawerContent = (props) => {
 
     const filters = { members: { $in: [userId] } };
     const publicFilters = { type: "livestream" };
-
-
     return (
         <SafeAreaView {...props}  style={{ flex: 1 }} className="bg-black">
             <View className="items-center">
