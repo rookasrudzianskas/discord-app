@@ -11,7 +11,6 @@ const AuthContextComponent = ({ children, client }) => {
     const [userId, setUserId] = useState(null);
 
 
-
     return (
         <AuthContext.Provider value={{ userId, setUserId }}>
             {children}
