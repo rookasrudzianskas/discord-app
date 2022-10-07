@@ -38,7 +38,7 @@ function RootNavigator() {
         ) : (
             <>
                 {/* @ts-ignore */}
-                <Stack.Screen name="Root" component={DrawerNavigator} options={{ headerShown: false }} />
+                <Stack.Screen name="Root" component={DrawerNavigator} options={{headerShown: false}}/>
                 {/*   @ts-ignore */}
                 <Stack.Screen name="NotFound" component={NotFoundScreen} options={{ title: 'Oops!' }} />
             </>
