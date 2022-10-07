@@ -31,8 +31,9 @@ const SignUpScreen = () => {
         client.devToken(username)
     );
 
+    // Creates the public channel
     const channel = client.channel("livestream", "public", { name: "Public" });
-    // await channel.watch();
+    await channel.watch();
 
     setUserId(username);
   };
