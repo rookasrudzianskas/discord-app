@@ -22,6 +22,11 @@ const log = logger.createLogger();
 
 const theme = {
     colors: StreamColors,
+    messageInput: {
+        container: {
+            backgroundColor: 'red',
+        }
+    }
 }
 
 const App = () => {
