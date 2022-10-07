@@ -23,7 +23,7 @@ const ChannelScreen = () => {
     }
 
     return (
-        <Channel forceAlignMessages={"left"} channel={channel} key={channel.data.name}>
+        <Channel channel={channel} key={channel.data.name}>
             <MessageList />
             <MessageInput />
         </Channel>

@@ -12,7 +12,6 @@ import {StreamChat} from 'stream-chat';
 import {useEffect, useState} from "react";
 import { logger } from "react-native-logs";
 import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
-import {Text} from "react-native";
 import AuthContext from "./src/contexts/authContext";
 import {StreamColors} from "./src/constants/Colors";
 
@@ -24,7 +23,6 @@ const theme = {
     colors: StreamColors,
     messageInput: {
         container: {
-            backgroundColor: 'red',
         }
     }
 }
