@@ -61,17 +61,17 @@ const App = () => {
             <SafeAreaProvider>
                 <OverlayProvider>
                     <Chat client={client} >
-                        {!selectedChannel ? (<ChannelList onSelect={onChannelSelect} />) : (
-                            <>
-                                <Channel channel={selectedChannel}>
-                                    <Text className="text-lg font-bold mt-16 ml-10" onPress={() => setSelectedChannel(null)}>Back</Text>
-                                    <MessageList />
-                                    <MessageInput />
-                                </Channel>
-                            </>
-                        )}
-                        {/*<Navigation colorScheme={colorScheme} />*/}
-                        <StatusBar />
+                        {/*{!selectedChannel ? (<ChannelList onSelect={onChannelSelect} />) : (*/}
+                        {/*    <>*/}
+                        {/*        <Channel channel={selectedChannel}>*/}
+                        {/*            <Text className="text-lg font-bold mt-16 ml-10" onPress={() => setSelectedChannel(null)}>Back</Text>*/}
+                        {/*            <MessageList />*/}
+                        {/*            <MessageInput />*/}
+                        {/*        </Channel>*/}
+                        {/*    </>*/}
+                        {/*)}*/}
+                        <Navigation colorScheme={colorScheme} />
+                        <StatusBar style="light" />
                     </Chat>
                 </OverlayProvider>
             </SafeAreaProvider>
