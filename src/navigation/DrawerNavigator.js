@@ -11,6 +11,7 @@ import {Auth} from "aws-amplify";
 import UserListScreen from "../screens/UserListScreen";
 import Button from "../components/Button";
 import ChannelMembers from "../screens/ChannelMembers";
+import NewChannelScreen from "../screens/NewChannelScreen";
 // import { LogBox. } from 'react-native';
 
 LogBox.ignoreLogs([
@@ -37,6 +38,7 @@ const DrawerNavigator = () => {
             )} />
             <Drawer.Screen name="UserList" component={UserListScreen} options={{title: 'Users'}} />
             <Drawer.Screen name="ChannelMembers" component={ChannelMembers} options={{title: 'Channel Members'}} />
+            <Drawer.Screen name="NewChannel" component={NewChannelScreen} options={{title: 'New Channel'}} />
         </Drawer.Navigator>
     );
 }
@@ -80,7 +82,7 @@ const CustomDrawerContent = (props) => {
 
             {tab === 'public' && (
                 <>
-                    <Text style={styles.groupTitle}>Public channels</Text>
+                    <Button title={'Start'} onPress={() => {navigation.navigate('NewChannel')}} />
                     <ChannelList onSelect={onChannelSelect} filters={publicFilters} />
                 </>
                 )}
