@@ -7,11 +7,14 @@ const NewChannelScreen = () => {
     const [name, setName] = useState('');
     const {client} = useChatContext();
 
-    const createChannel = () => {
+    const createChannel = async () => {
         // create a channel
-        const channel = client.channel('team', name, {
+        const channel = client.channel("team", name, {
             name,
         });
+
+        // navigate to the channel
+        await channel.create();
     }
 
     return (
