@@ -29,7 +29,6 @@ const MembersIcon = ({route, navigation}) => {
     if(!route?.params?.channel) {
         return null;
     }
-
     return (
         <TouchableOpacity onPress={() => navigation.navigate('ChannelMembers', {
             channel: route.params.channel,
