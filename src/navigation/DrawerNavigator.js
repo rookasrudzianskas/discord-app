@@ -52,7 +52,7 @@ const CustomDrawerContent = (props) => {
     };
     const { userId } = useAuthContext();
 
-    const filters = { members: { $in: [userId] } };
+    const privatefilters = { members: { $in: [userId] } };
     const publicFilters = { type: "livestream" };
     return (
         <SafeAreaView {...props}  style={{ flex: 1 }} className="px-3">
@@ -90,7 +90,7 @@ const CustomDrawerContent = (props) => {
             {tab === 'private' && (
                 <>
                     <Button title={'Start'} onPress={() => {navigation.navigate('UserList')}} />
-                    <ChannelList onSelect={onChannelSelect} filters={filters} />
+                    <ChannelList onSelect={onChannelSelect} filters={privatefilters} />
                 </>
                 )}
 
