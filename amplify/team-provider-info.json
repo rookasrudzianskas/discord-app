@@ -14,6 +14,12 @@
     "categories": {
       "auth": {
         "Discord": {}
+      },
+      "function": {
+        "getStreamToken": {
+          "streamKey": "5paxy3knjczj",
+          "streamSecret": "e94xv9k4crn8uknwrbj5qepnxqhf9qv9jtchwf8bs3axhap2pux9ahxec6x97smt"
+        }
       }
     }
   }
