@@ -3,11 +3,13 @@ import {Text, View, StyleSheet, FlatList} from 'react-native';
 import {useChatContext} from "stream-chat-expo";
 import UserListItem from "../components/UserListItem";
 import {useAuthContext} from "../contexts/authContext";
+import {useNavigation} from "@react-navigation/native";
 
 const UserListScreen = () => {
     const {client} = useChatContext();
     const [users, setUsers] = useState([]);
     const {userId} = useAuthContext();
+    const navigation = useNavigation();
 
     const fetchUsers = async () => {
         const response = await client.queryUsers({});
@@ -20,6 +22,8 @@ const UserListScreen = () => {
             members: [userId, user.id],
         });
         await channel.create();
+        // navigate to the chat directly
+        navigation.navigate('ChannelScreen', {channel});
     }
 
     useEffect(() => {
