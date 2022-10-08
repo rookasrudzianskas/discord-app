@@ -20,6 +20,7 @@ const NewChannelScreen = () => {
         // navigate to the channel
         await channel.create();
         await channel.addMembers([userId]);
+        setName("");
         navigation.navigate("ChannelScreen", { channel });
     }
 
