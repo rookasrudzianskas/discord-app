@@ -14,7 +14,6 @@ const { STREAM_KEY, STREAM_SECRET } = process.env;
  */
 
 exports.handler = async (event) => {
-    console.log(`EVENT: ${JSON.stringify(event)}`);
     if(!event?.identity?.sub) {
         return "";
     }
