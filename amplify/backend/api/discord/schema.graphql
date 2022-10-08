@@ -1,3 +1,3 @@
 type Query {
-    getStreamToken: String! @function(name: 'getStreamToken-${env}')
+    getStreamToken: String! @function(name: "getStreamToken-${env}")
 }

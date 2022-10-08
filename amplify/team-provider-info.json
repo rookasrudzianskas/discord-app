@@ -18,8 +18,13 @@
       "function": {
         "getStreamToken": {
           "streamKey": "5paxy3knjczj",
-          "streamSecret": "e94xv9k4crn8uknwrbj5qepnxqhf9qv9jtchwf8bs3axhap2pux9ahxec6x97smt"
+          "streamSecret": "e94xv9k4crn8uknwrbj5qepnxqhf9qv9jtchwf8bs3axhap2pux9ahxec6x97smt",
+          "deploymentBucketName": "amplify-discord-staging-170414-deployment",
+          "s3Key": "amplify-builds/getStreamToken-36794d2f4d642b4d4349-build.zip"
         }
+      },
+      "api": {
+        "discord": {}
       }
     }
   }
