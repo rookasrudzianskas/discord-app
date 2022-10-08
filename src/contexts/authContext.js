@@ -24,7 +24,7 @@ const AuthContextComponent = ({ children, client }) => {
                 image:
                     "https://yt3.ggpht.com/-CDERLAq3BNY7murpWzg3z9Qde3c9ZrRx59LlLEb1UzKDKZ_ckpTAOlYVQ5TJo9XTgJl2kh9bw=s900-c-k-c0x00ffffff-no-rj",
             },
-            client.devToken(username)
+            "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWFhZDU5OTQtODhmZC00N2Y4LWE0NDgtNDdiZjIyMzEwOTQ5In0.WEEETLqM5Mm-DZTzqo1bfgA743vaFsj-ATX7RcafFuQ" // token from the DataBase
         );
 
         // Creates the public channel, which anyone can join!
