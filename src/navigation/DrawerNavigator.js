@@ -6,10 +6,11 @@ import {useState} from "react";
 import {SafeAreaView} from "react-native-safe-area-context";
 import {useAuthContext} from "../contexts/authContext";
 import ChannelScreen from "../screens/ChannelScreen";
-import {AntDesign, FontAwesome5, Ionicons} from "@expo/vector-icons";
+import {AntDesign, FontAwesome, FontAwesome5, Ionicons} from "@expo/vector-icons";
 import {Auth} from "aws-amplify";
 import UserListScreen from "../screens/UserListScreen";
 import Button from "../components/Button";
+import ChannelMembers from "../screens/ChannelMembers";
 // import { LogBox. } from 'react-native';
 
 LogBox.ignoreLogs([
@@ -20,8 +21,16 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
     return (
         <Drawer.Navigator drawerContent={CustomDrawerContent}>
-            <Drawer.Screen name="ChannelScreen" component={ChannelScreen} />
+            <Drawer.Screen name="ChannelScreen" component={ChannelScreen} options={{
+                title: 'Channel',
+                headerRight: () => (
+                    <TouchableOpacity className="mr-5" activeOpacity={0.7}>
+                        <FontAwesome name="user" size={24} color="white" />
+                    </TouchableOpacity>
+                ),
+            }} />
             <Drawer.Screen name="UserList" component={UserListScreen} options={{title: 'Users'}} />
+            <Drawer.Screen name="ChannelMembers" component={ChannelMembers} options={{title: 'Channel Members'}} />
         </Drawer.Navigator>
     );
 }
