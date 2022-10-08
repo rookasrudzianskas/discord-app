@@ -21,14 +21,16 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
     return (
         <Drawer.Navigator drawerContent={CustomDrawerContent}>
-            <Drawer.Screen name="ChannelScreen" component={ChannelScreen} options={{
-                title: 'Channel',
-                headerRight: () => (
-                    <TouchableOpacity className="mr-5" activeOpacity={0.7}>
-                        <FontAwesome name="user" size={24} color="white" />
-                    </TouchableOpacity>
-                ),
-            }} />
+            <Drawer.Screen name="ChannelScreen" component={ChannelScreen} options={({navigation, route}) => (
+                {
+                    title: 'Channel',
+                    headerRight: () => (
+                        <TouchableOpacity className="mr-5" activeOpacity={0.7}>
+                            <FontAwesome name="user" size={24} color="white" />
+                        </TouchableOpacity>
+                    ),
+                }
+            )} />
             <Drawer.Screen name="UserList" component={UserListScreen} options={{title: 'Users'}} />
             <Drawer.Screen name="ChannelMembers" component={ChannelMembers} options={{title: 'Channel Members'}} />
         </Drawer.Navigator>
