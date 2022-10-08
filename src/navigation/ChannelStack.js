@@ -1,7 +1,7 @@
 import {createNativeStackNavigator} from "@react-navigation/native-stack";
 import ChannelScreen from "../screens/ChannelScreen";
 import {TouchableOpacity} from "react-native";
-import {FontAwesome} from "@expo/vector-icons";
+import {Feather, FontAwesome} from "@expo/vector-icons";
 import ChannelMembers from "../screens/ChannelMembers";
 import InviteMembersScreen from "../screens/InviteMembersScreen";
 
@@ -15,6 +15,7 @@ const ChannelStack = () => {
                 {
                     title: 'Chat',
                     headerRight: () => <MembersIcon route={route} navigation={navigation} />,
+                    headerLeft: () => <HambugerIcon route={route} navigation={navigation} />,
                 }
             )} />
             <Stack.Screen name="ChannelMembers" component={ChannelMembers} options={{title: 'Channel Members'}} />
@@ -35,6 +36,14 @@ const MembersIcon = ({route, navigation}) => {
             channel: route.params.channel,
         })} className="mr-5" activeOpacity={0.7}>
             <FontAwesome name="user" size={24} color="white" />
+        </TouchableOpacity>
+    )
+}
+
+const HambugerIcon = ({route, navigation}) => {
+    return (
+        <TouchableOpacity onPress={() => navigation.openDrawer()} className="mr-5" activeOpacity={0.7}>
+            <Feather name="menu" size={24} color="white" />
         </TouchableOpacity>
     )
 }
