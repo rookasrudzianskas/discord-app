@@ -3,6 +3,7 @@ import ChannelScreen from "../screens/ChannelScreen";
 import {TouchableOpacity} from "react-native";
 import {FontAwesome} from "@expo/vector-icons";
 import ChannelMembers from "../screens/ChannelMembers";
+import InviteMembersScreen from "../screens/InviteMembersScreen";
 
 
 const Stack = createNativeStackNavigator();
@@ -17,6 +18,7 @@ const ChannelStack = () => {
                 }
             )} />
             <Stack.Screen name="ChannelMembers" component={ChannelMembers} options={{title: 'Channel Members'}} />
+            <Stack.Screen name="InviteMembers" component={InviteMembersScreen} options={{title: 'Invite Members'}} />
 
         </Stack.Navigator>
     )
