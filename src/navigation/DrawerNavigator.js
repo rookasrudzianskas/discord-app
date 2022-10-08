@@ -7,6 +7,7 @@ import {SafeAreaView} from "react-native-safe-area-context";
 import {useAuthContext} from "../contexts/authContext";
 import ChannelScreen from "../screens/ChannelScreen";
 import {AntDesign, FontAwesome5, Ionicons} from "@expo/vector-icons";
+import {Auth} from "aws-amplify";
 // import { LogBox. } from 'react-native';
 
 LogBox.ignoreLogs([
@@ -53,6 +54,8 @@ const CustomDrawerContent = (props) => {
 
             <Text style={styles.groupTitle}>Your channels</Text>
             <ChannelList onSelect={onChannelSelect} filters={filters} />
+
+            <Text className="text-white font-bold ml-3" onPress={() => Auth.signOut()}>Logout</Text>
         </SafeAreaView>
     );
 
