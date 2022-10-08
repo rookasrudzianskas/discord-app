@@ -19,8 +19,6 @@ const AuthContextComponent = ({ children, client }) => {
         const {sub, email} = userData.attributes;
         const tokenResponse = await API.graphql(graphqlOperation(getStreamToken));
         const token = tokenResponse?.data.getStreamToken;
-        // console.log("token", token);
-        // console.warn("sub", sub);
 
         if(!token) {Alert.alert('Failed to fetch token', 'Please try again later'); return;}
         await client.connectUser(
@@ -37,7 +35,6 @@ const AuthContextComponent = ({ children, client }) => {
         const channel = client.channel("livestream", "public", {name: "Public"});
         await channel.watch();
 
-        // console.log(sub)
         setUserId(sub);
     }
 
