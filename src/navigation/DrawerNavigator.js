@@ -25,9 +25,11 @@ const DrawerNavigator = () => {
                 {
                     title: 'Channel',
                     headerRight: () => (
-                        <TouchableOpacity onPress={() => navigation.navigate('ChannelMembers')} className="mr-5" activeOpacity={0.7}>
-                            <FontAwesome name="user" size={24} color="white" />
-                        </TouchableOpacity>
+                        route?.params?.channel && (
+                                <TouchableOpacity onPress={() => navigation.navigate('ChannelMembers')} className="mr-5" activeOpacity={0.7}>
+                                    <FontAwesome name="user" size={24} color="white" />
+                                </TouchableOpacity>
+                            )
                     ),
                 }
             )} />
