@@ -52,8 +52,11 @@ const CustomDrawerContent = (props) => {
     };
     const { userId } = useAuthContext();
 
-    const privatefilters = { members: { $in: [userId] } };
-    const publicFilters = { type: "livestream" };
+    const privatefilters = { type: "messaging", members: { $in: [userId] } };
+    const publicFilters = { type: { $ne: "messaging" },
+        members: { $in: [userId] }
+    };
+
     return (
         <SafeAreaView {...props}  style={{ flex: 1 }} className="px-3">
             <View className="flex-row items-center space-x-2 ml-8">

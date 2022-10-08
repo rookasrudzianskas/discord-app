@@ -13,7 +13,6 @@ const NewChannelScreen = () => {
         const channel = client.channel("team", (uuid.v4()), {
             name,
         });
-
         // navigate to the channel
         await channel.create();
     }
