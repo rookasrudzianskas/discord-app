@@ -1,13 +1,15 @@
-import React, {useEffect} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {Text, View, StyleSheet, FlatList} from 'react-native';
 import {useChatContext} from "stream-chat-expo";
+import UserListItem from "../components/UserListItem";
 
 const UserListScreen = () => {
     const {client} = useChatContext();
+    const [users, setUsers] = useState([]);
 
     const fetchUsers = async () => {
         const response = await client.queryUsers({});
-        console.log(response);
+        setUsers(response.users);
     }
 
     useEffect(() => {
@@ -15,9 +17,9 @@ const UserListScreen = () => {
     }, []);
     return (
         <View>
-            <Text className="text-white">
-                byrookas 🚀
-            </Text>
+            <FlatList data={users} renderItem={({item}) => (
+                <UserListItem user={item} />
+            )} />
         </View>
     );
 };
