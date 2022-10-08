@@ -7,8 +7,13 @@ const ChannelMembers = () => {
     const channel = route.params.channel;
     const [members, setMembers] = useState([]);
 
-    useEffect(() => {
+    const fetchMembers = async () => {
+        const response = await channel.queryMembers({});
+        console.log('response', response);
+    }
 
+    useEffect(() => {
+        fetchMembers();
     }, []);
 
     return (
