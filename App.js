@@ -57,7 +57,7 @@ const App = () => {
     } else {
         return (
             <SafeAreaProvider>
-                <AuthContext>
+                <AuthContext client={client}>
                     <OverlayProvider value={{ style: theme }}>
                         <Chat client={client} >
                             <Navigation colorScheme={"dark"} />
