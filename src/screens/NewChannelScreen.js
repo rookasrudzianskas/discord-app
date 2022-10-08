@@ -10,7 +10,7 @@ const NewChannelScreen = () => {
 
     const createChannel = async () => {
         // create a channel
-        const channel = client.channel("team", uuid.v4(), {
+        const channel = client.channel("team", (uuid.v4()), {
             name,
         });
 
