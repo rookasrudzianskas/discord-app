@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, FlatList} from 'react-native';
 import {useRoute} from "@react-navigation/native";
+import UserListItem from "../components/UserListItem";
 
 const ChannelMembers = () => {
     const route = useRoute();
@@ -9,7 +10,8 @@ const ChannelMembers = () => {
 
     const fetchMembers = async () => {
         const response = await channel.queryMembers({});
-        console.log('response', response);
+        // console.log('response', response);
+        setMembers(response.members);
     }
 
     useEffect(() => {
@@ -17,10 +19,10 @@ const ChannelMembers = () => {
     }, []);
 
     return (
-        <View>
-            <Text className="text-white">
-                byrookas 🚀
-            </Text>
+        <View className="mt-10 mx-3">
+            <FlatList data={members} showsVerticalScrollIndicator={false} renderItem={({item}) => (
+                <UserListItem user={item.user} onPress={() => {}} />
+            )} />
         </View>
     );
 };
