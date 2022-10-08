@@ -12,13 +12,17 @@ const UserListScreen = () => {
         setUsers(response.users);
     }
 
+    const startChannel = () => {
+        console.log('start channel');
+    }
+
     useEffect(() => {
         fetchUsers();
     }, []);
     return (
         <View className="mt-10 mx-3">
             <FlatList data={users} showsVerticalScrollIndicator={false} renderItem={({item}) => (
-                <UserListItem user={item} />
+                <UserListItem user={item} onPress={startChannel} />
             )} />
         </View>
     );
