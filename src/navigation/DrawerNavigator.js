@@ -24,6 +24,7 @@ const DrawerNavigator = () => {
 }
 
 const CustomDrawerContent = (props) => {
+    const [tab, setTab] = useState('public');
     const onChannelSelect = (channel) => {
         // navigate to a screen for this channel
         props.navigation.navigate("ChannelScreen", { channel });
@@ -49,11 +50,30 @@ const CustomDrawerContent = (props) => {
                 <Text className="text-white text-[18px] font-bold">Events</Text>
             </View>
 
-            <Text style={styles.groupTitle}>Public channels</Text>
-            <ChannelList onSelect={onChannelSelect} filters={publicFilters} />
+            <View className="flex-row items-center justify-between space-x-2 mt-5 py-2">
+                <TouchableOpacity onPress={() => setTab('public')} activeOpacity={0.7} className={`${tab === 'public' ? 'bg-white' : 'bg-gray-500'} px-10 py-2 rounded-lg`}>
+                    <Text className={`${tab === 'public' ? 'text-black' : 'text-white'} font-semibold`}>Public</Text>
+                </TouchableOpacity>
+                <TouchableOpacity onPress={() => setTab('private')} activeOpacity={0.7} className={`${tab === 'private' ? 'bg-white' : 'bg-gray-500'} px-10 py-2 rounded-lg`}>
+                    <Text className={`${tab === 'private' ? 'text-black' : 'text-white'} font-semibold`}>Private</Text>
+                </TouchableOpacity>
+            </View>
 
-            <Text style={styles.groupTitle}>Your channels</Text>
-            <ChannelList onSelect={onChannelSelect} filters={filters} />
+            {tab === 'public' && (
+                <>
+                    <Text style={styles.groupTitle}>Public channels</Text>
+                    <ChannelList onSelect={onChannelSelect} filters={publicFilters} />
+                </>
+                )}
+
+            {tab === 'private' && (
+                <>
+                    <Text style={styles.groupTitle}>Your channels</Text>
+                    <ChannelList onSelect={onChannelSelect} filters={filters} />
+                </>
+                )}
+
+
 
             <Text className="text-white font-bold ml-3" onPress={() => Auth.signOut()}>Logout</Text>
         </SafeAreaView>
