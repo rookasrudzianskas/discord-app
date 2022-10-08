@@ -5,10 +5,13 @@ import {useChatContext} from "stream-chat-expo";
 
 const NewChannelScreen = () => {
     const [name, setName] = useState('');
+    const {client} = useChatContext();
 
     const createChannel = () => {
         // create a channel
-        const client = useChatContext();
+        const channel = client.channel('team', name, {
+            name,
+        });
     }
 
     return (
