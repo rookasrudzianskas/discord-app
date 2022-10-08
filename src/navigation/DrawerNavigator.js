@@ -12,6 +12,7 @@ import UserListScreen from "../screens/UserListScreen";
 import Button from "../components/Button";
 import ChannelMembers from "../screens/ChannelMembers";
 import NewChannelScreen from "../screens/NewChannelScreen";
+import ChannelStack from "./ChannelStack";
 // import { LogBox. } from 'react-native';
 
 LogBox.ignoreLogs([
@@ -22,22 +23,11 @@ const Drawer = createDrawerNavigator();
 const DrawerNavigator = () => {
     return (
         <Drawer.Navigator drawerContent={CustomDrawerContent}>
-            <Drawer.Screen name="ChannelScreen" component={ChannelScreen} options={({navigation, route}) => (
-                {
-                    title: 'Channel',
-                    headerRight: () => (
-                        route?.params?.channel && (
-                                <TouchableOpacity onPress={() => navigation.navigate('ChannelMembers', {
-                                    channel: route.params.channel,
-                                })} className="mr-5" activeOpacity={0.7}>
-                                    <FontAwesome name="user" size={24} color="white" />
-                                </TouchableOpacity>
-                            )
-                    ),
-                }
-            )} />
+            <Drawer.Screen name="ChannelScreen" component={ChannelStack} options={{
+                title: 'Channel',
+                // headerShown: false,
+            }} />
             <Drawer.Screen name="UserList" component={UserListScreen} options={{title: 'Users'}} />
-            <Drawer.Screen name="ChannelMembers" component={ChannelMembers} options={{title: 'Channel Members'}} />
             <Drawer.Screen name="NewChannel" component={NewChannelScreen} options={{title: 'New Channel'}} />
         </Drawer.Navigator>
     );
@@ -48,7 +38,7 @@ const CustomDrawerContent = (props) => {
     const {navigation} = props;
     const onChannelSelect = (channel) => {
         // navigate to a screen for this channel
-        navigation.navigate("ChannelScreen", { channel });
+        navigation.navigate("ChannelScreen", { screen: 'Chat', params: { channel } });
     };
     const { userId } = useAuthContext();
 
