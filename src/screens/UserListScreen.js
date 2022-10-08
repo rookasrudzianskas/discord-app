@@ -12,8 +12,12 @@ const UserListScreen = () => {
         setUsers(response.users);
     }
 
-    const startChannel = () => {
-        console.log('start channel');
+    const startChannel = async () => {
+        // console.log('start channel');
+        const channel = client.channel('messaging', {
+            members: ['vishal', 'vishal2'],
+        });
+        await channel.create();
     }
 
     useEffect(() => {
