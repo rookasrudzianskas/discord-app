@@ -16,7 +16,6 @@ const AuthContextComponent = ({ children, client }) => {
         const userData = await Auth.currentAuthenticatedUser({bypassCache: true});
         const {sub, email} = userData.attributes;
         // console.warn("sub", sub);
-
         await client.connectUser(
             {
                 id: sub,
@@ -26,13 +25,11 @@ const AuthContextComponent = ({ children, client }) => {
             },
             "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiYWFhZDU5OTQtODhmZC00N2Y4LWE0NDgtNDdiZjIyMzEwOTQ5In0.WEEETLqM5Mm-DZTzqo1bfgA743vaFsj-ATX7RcafFuQ" // token from the DataBase
         );
-
         // Creates the public channel, which anyone can join!
         const channel = client.channel("livestream", "public", {name: "Public"});
         await channel.watch();
 
         // console.log(sub)
-
         setUserId(sub);
     }
 
