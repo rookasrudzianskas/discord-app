@@ -16,10 +16,12 @@ const InviteMembersScreen = () => {
     const channel = route.params.channel;
 
     const fetchUsers = async () => {
-        const existingMembers = channel.queryMembers();
+        const existingMembers = await channel.queryMembers({});
         // console.log('existingMembers', existingMembers);
+        const existingMemberIds = existingMembers.members.map((m) => m.user_id);
+        // console.log('existingMemberIds', existingMemberIds);
 
-        const response = await client.queryUsers({});
+        const response = await client.queryUsers({ id: { $nin:  existingMemberIds } });
         setUsers(response.users);
     }
 
