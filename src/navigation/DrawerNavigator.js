@@ -8,6 +8,8 @@ import {useAuthContext} from "../contexts/authContext";
 import ChannelScreen from "../screens/ChannelScreen";
 import {AntDesign, FontAwesome5, Ionicons} from "@expo/vector-icons";
 import {Auth} from "aws-amplify";
+import UserListScreen from "../screens/UserListScreen";
+import Button from "../components/Button";
 // import { LogBox. } from 'react-native';
 
 LogBox.ignoreLogs([
@@ -19,15 +21,17 @@ const DrawerNavigator = () => {
     return (
         <Drawer.Navigator drawerContent={CustomDrawerContent}>
             <Drawer.Screen name="ChannelScreen" component={ChannelScreen} />
+            <Drawer.Screen name="UserList" component={UserListScreen} options={{title: 'Users'}} />
         </Drawer.Navigator>
     );
 }
 
 const CustomDrawerContent = (props) => {
     const [tab, setTab] = useState('public');
+    const {navigation} = props;
     const onChannelSelect = (channel) => {
         // navigate to a screen for this channel
-        props.navigation.navigate("ChannelScreen", { channel });
+        navigation.navigate("ChannelScreen", { channel });
     };
     const { userId } = useAuthContext();
 
@@ -68,14 +72,16 @@ const CustomDrawerContent = (props) => {
 
             {tab === 'private' && (
                 <>
-                    <Text style={styles.groupTitle}>Your channels</Text>
+                    <Button title={'Start'} onPress={() => {navigation.navigate('UserList')}} />
                     <ChannelList onSelect={onChannelSelect} filters={filters} />
                 </>
                 )}
 
 
 
-            <Text className="text-white font-bold ml-3" onPress={() => Auth.signOut()}>Logout</Text>
+            <TouchableOpacity activeOpacity={0.7} onPress={() => Auth.signOut()} className="bg-gray-800 py-2 rounded-lg">
+                <Text className="text-white font-bold ml-3 text-center">Logout</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     );
 
