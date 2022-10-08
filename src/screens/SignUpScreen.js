@@ -10,6 +10,7 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useChatContext } from "stream-chat-expo";
 import {useAuthContext} from "../contexts/authContext";
+import {Auth} from "aws-amplify";
 
 const SignUpScreen = () => {
   const [username, setUsername] = useState("test");
@@ -21,6 +22,7 @@ const SignUpScreen = () => {
 
   const connectUser = async () => {
     // sign in with your backend and get the user token
+
     await client.connectUser(
         {
           id: username,

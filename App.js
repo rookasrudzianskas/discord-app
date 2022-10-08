@@ -13,7 +13,7 @@ import { logger } from "react-native-logs";
 import {OverlayProvider, Chat, ChannelList, Channel, MessageList, MessageInput} from 'stream-chat-expo';
 import AuthContext from "./src/contexts/authContext";
 import {StreamColors} from "./src/constants/Colors";
-import { Amplify } from 'aws-amplify'
+import {Amplify, Auth} from 'aws-amplify'
 import awsconfig from './src/aws-exports'
 import {withAuthenticator} from "aws-amplify-react-native/src/Auth";
 
@@ -38,8 +38,14 @@ const App = () => {
     const isLoadingComplete = useCachedResources();
     const colorScheme = useColorScheme();
 
+    const fetchUser = async () => {
+        const userData = await Auth.currentAuthenticatedUser({bypassCache: true});
+        // console.log("userData", userData);
+    }
+
     useEffect(() => {
         // this is done then component mounts, but we need to do it when the user signs up
+        fetchUser();
         return () => {
             // this is done when the component unmounts
             client.disconnectUser();
