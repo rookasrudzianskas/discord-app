@@ -3,10 +3,14 @@ import {Text, View, StyleSheet, TextInput} from 'react-native';
 import Button from "../components/Button";
 import {useChatContext} from "stream-chat-expo";
 import uuid from 'react-native-uuid';
+import {useAuthContext} from "../contexts/authContext";
+import {useNavigation} from "@react-navigation/native";
 
 const NewChannelScreen = () => {
     const [name, setName] = useState('');
     const {client} = useChatContext();
+    const {userId} = useAuthContext();
+    const navigation = useNavigation();
 
     const createChannel = async () => {
         // create a channel
@@ -15,6 +19,8 @@ const NewChannelScreen = () => {
         });
         // navigate to the channel
         await channel.create();
+        await channel.addMembers([userId]);
+        navigation.navigate("ChannelScreen", { channel });
     }
 
     return (
