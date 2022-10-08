@@ -8,6 +8,7 @@ import UserListItem from "../components/UserListItem";
 const InviteMembersScreen = () => {
     const {client} = useChatContext();
     const [users, setUsers] = useState([]);
+    const [selectedUserIds, setSelectedUserIds] = useState([]);
     const {userId} = useAuthContext();
     const navigation = useNavigation();
 
@@ -20,10 +21,14 @@ const InviteMembersScreen = () => {
         fetchUsers();
     }, []);
 
+    const selectUser = (user) => {
+        setSelectedUserIds(existingUserIds => [...existingUserIds, user.id]);
+    }
+
     return (
         <View className="mt-10 mx-3">
             <FlatList data={users} showsVerticalScrollIndicator={false} renderItem={({item}) => (
-                <UserListItem user={item} onPress={() => {}} />
+                <UserListItem user={item} onPress={selectUser} isSelected={selectedUserIds.includes(item.id)} />
             )} />
         </View>
     );
