@@ -16,8 +16,8 @@ const UserListScreen = () => {
         fetchUsers();
     }, []);
     return (
-        <View>
-            <FlatList data={users} renderItem={({item}) => (
+        <View className="mt-10 mx-3">
+            <FlatList data={users} showsVerticalScrollIndicator={false} renderItem={({item}) => (
                 <UserListItem user={item} />
             )} />
         </View>

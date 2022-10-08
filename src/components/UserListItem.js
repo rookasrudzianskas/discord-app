@@ -1,13 +1,14 @@
 import React from 'react';
-import {Text, View, StyleSheet} from 'react-native';
+import {Text, View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 
 const UserListItem = ({user}) => {
     return (
-        <View>
-            <Text className="text-white">
-                byrookas 🚀
+        <TouchableOpacity activeOpacity={0.7} className="flex-row items-center space-x-3 my-3">
+            <Image source={{uri: user.image}} className="w-12 h-12 rounded-full" />
+            <Text className="text-white font-bold">
+                {user.name}
             </Text>
-        </View>
+        </TouchableOpacity>
     );
 };
 
