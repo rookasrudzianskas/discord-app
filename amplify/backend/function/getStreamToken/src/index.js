@@ -15,5 +15,13 @@ const { STREAM_KEY, STREAM_SECRET } = process.env;
 
 exports.handler = async (event) => {
     console.log(`EVENT: ${JSON.stringify(event)}`);
-    return "New Generated Token";
+    if(!event?.identity?.sub) {
+        return "";
+    }
+
+    const client = StreamChat.getInstance(STREAM_KEY, STREAM_SECRET);
+
+    const token = client.createToken(event.identity.sub);
+
+    return token;
 };
