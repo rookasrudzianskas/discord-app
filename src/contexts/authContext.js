@@ -31,7 +31,9 @@ const AuthContextComponent = ({ children, client }) => {
         const channel = client.channel("livestream", "public", {name: "Public"});
         await channel.watch();
 
-        setUserId(username);
+        // console.log(sub)
+
+        setUserId(sub);
     }
 
     useEffect(() => {
