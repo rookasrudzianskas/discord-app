@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Text, View, StyleSheet, TextInput} from 'react-native';
 import Button from "../components/Button";
 import {useChatContext} from "stream-chat-expo";
+import uuid from 'react-native-uuid';
 
 const NewChannelScreen = () => {
     const [name, setName] = useState('');
@@ -9,7 +10,7 @@ const NewChannelScreen = () => {
 
     const createChannel = async () => {
         // create a channel
-        const channel = client.channel("team", name, {
+        const channel = client.channel("team", uuid.v4(), {
             name,
         });
 
