@@ -15,7 +15,7 @@ const ChannelStack = () => {
                 {
                     title: 'Chat',
                     headerRight: () => <MembersIcon route={route} navigation={navigation} />,
-                    headerLeft: () => <HambugerIcon route={route} navigation={navigation} />,
+                    headerLeft: () => <HambugerIcon navigation={navigation} />,
                 }
             )} />
             <Stack.Screen name="ChannelMembers" component={ChannelMembers} options={{title: 'Channel Members'}} />
@@ -26,7 +26,6 @@ const ChannelStack = () => {
 }
 
 const MembersIcon = ({route, navigation}) => {
-    // console.log(route);
     if(!route?.params?.channel) {
         return null;
     }
@@ -40,7 +39,7 @@ const MembersIcon = ({route, navigation}) => {
     )
 }
 
-const HambugerIcon = ({route, navigation}) => {
+const HambugerIcon = ({navigation}) => {
     return (
         <TouchableOpacity onPress={() => navigation.openDrawer()} className="mr-5" activeOpacity={0.7}>
             <Feather name="menu" size={24} color="white" />
