@@ -1,4 +1,5 @@
 import { createContext, useState, useContext, useEffect } from "react";
+import {Auth} from "aws-amplify";
 
 const AuthContext = createContext({
     userId: null,
@@ -11,9 +12,14 @@ const AuthContextComponent = ({ children, client }) => {
     const [userId, setUserId] = useState(null);
 
     const connectStreamChat = async () => {
+
+        const userData = await Auth.currentAuthenticatedUser({bypassCache: true});
+        const sub = userData.attributes.sub;
+        // console.warn("sub", sub);
+
         await client.connectUser(
             {
-                id: username,
+                id: 'Rokas',
                 name: name,
                 image:
                     "https://yt3.ggpht.com/-CDERLAq3BNY7murpWzg3z9Qde3c9ZrRx59LlLEb1UzKDKZ_ckpTAOlYVQ5TJo9XTgJl2kh9bw=s900-c-k-c0x00ffffff-no-rj",
