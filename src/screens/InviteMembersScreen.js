@@ -4,6 +4,7 @@ import {useChatContext} from "stream-chat-expo";
 import {useAuthContext} from "../contexts/authContext";
 import {useNavigation} from "@react-navigation/native";
 import UserListItem from "../components/UserListItem";
+import Button from "../components/Button";
 
 const InviteMembersScreen = () => {
     const {client} = useChatContext();
@@ -22,12 +23,26 @@ const InviteMembersScreen = () => {
     }, []);
 
     const selectUser = (user) => {
-        setSelectedUserIds(existingUserIds => [...existingUserIds, user.id]);
+        if(selectedUserIds.includes(user.id)) {
+            setSelectedUserIds((existingUsers) =>
+                existingUsers.filter((id) => id !== user.id),
+            );
+        } else {
+            setSelectedUserIds(existingUserIds => [...existingUserIds, user.id]);
+        }
+    }
+
+    const inviteUsers = () => {
+
     }
 
     return (
         <View className="mt-10 mx-3">
-            <FlatList data={users} showsVerticalScrollIndicator={false} renderItem={({item}) => (
+            <FlatList data={users} showsVerticalScrollIndicator={false}
+                      ListHeaderComponent={ () => (
+                          !!selectedUserIds.length && (<Button title={'Invite Members'} onPress={inviteUsers} />)
+                          )}
+                      renderItem={({item}) => (
                 <UserListItem user={item} onPress={selectUser} isSelected={selectedUserIds.includes(item.id)} />
             )} />
         </View>

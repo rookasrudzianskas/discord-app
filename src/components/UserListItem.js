@@ -12,7 +12,7 @@ const UserListItem = ({user, onPress, isSelected}) => {
                 </Text>
             </View>
             <View className="">
-                {isSelected && (<Ionicons name="checkmark-circle" size={24} color="white" />)}
+                {isSelected && (<Ionicons name="checkmark-circle" size={24} color="green" />)}
             </View>
         </TouchableOpacity>
     );
