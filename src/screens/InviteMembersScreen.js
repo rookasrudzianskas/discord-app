@@ -14,6 +14,7 @@ const InviteMembersScreen = () => {
     const navigation = useNavigation();
 
     const fetchUsers = async () => {
+        // @TODO exclude users that are already members of the channel
         const response = await client.queryUsers({});
         setUsers(response.users);
     }
