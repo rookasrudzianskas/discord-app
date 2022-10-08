@@ -24,8 +24,8 @@ const DrawerNavigator = () => {
     return (
         <Drawer.Navigator drawerContent={CustomDrawerContent}>
             <Drawer.Screen name="ChannelScreen" component={ChannelStack} options={{
-                title: 'Channel',
-                // headerShown: false,
+                // title: 'Channel',
+                headerShown: false,
             }} />
             <Drawer.Screen name="UserList" component={UserListScreen} options={{title: 'Users'}} />
             <Drawer.Screen name="NewChannel" component={NewChannelScreen} options={{title: 'New Channel'}} />

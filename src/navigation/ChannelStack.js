@@ -23,7 +23,8 @@ const ChannelStack = () => {
 }
 
 const MembersIcon = ({route, navigation}) => {
-    if(route?.params?.channel) {
+    // console.log(route);
+    if(!route?.params?.channel) {
         return null;
     }
 
