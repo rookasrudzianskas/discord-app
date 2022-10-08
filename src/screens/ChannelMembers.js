@@ -16,11 +16,11 @@ const ChannelMembers = () => {
 
     useEffect(() => {
         fetchMembers();
-    }, []);
+    }, [channel]);
 
     return (
         <View className="mt-10 mx-3">
-            <FlatList data={members} showsVerticalScrollIndicator={false} renderItem={({item}) => (
+            <FlatList data={members} keyExtractor={(item) => item.user.id} showsVerticalScrollIndicator={false} renderItem={({item}) => (
                 <UserListItem user={item.user} onPress={() => {}} />
             )} />
         </View>

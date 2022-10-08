@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer, DefaultTheme, DarkTheme } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import * as React from 'react';
-import { ColorSchemeName, Pressable } from 'react-native';
+import {ActivityIndicator, ColorSchemeName, Pressable} from 'react-native';
 
 import Colors from '../constants/Colors';
 import useColorScheme from '../hooks/useColorScheme';
@@ -30,6 +30,11 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
     const {userId} = useAuthContext();
+    if(!userId) {
+        return (
+            <ActivityIndicator />
+        )
+    }
 
   return (
     <Stack.Navigator>
